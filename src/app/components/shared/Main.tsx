@@ -25,6 +25,7 @@ function Main() {
               <div key={i} className="border-b-[0.5px] border-lime-100 p-4 flex space-x-4">
                 <div>
                   <div className="w-10 h-10 bg-slate-200 rounder-full"/>
+                  
                 </div>
                 <div className="flex flex-col space-y-2">
                   <div className="flex items-center space-x-1">
