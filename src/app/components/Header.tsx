@@ -7,7 +7,7 @@ function Header() {
   const { userId } = auth ();
     console.log(userId);
     return (
-      <nav className='flex items-center justify-between px-10 py-4 bg-black/95'>
+      <nav className='flex items-center justify-between px-10 py-4 bg-neutral-900'>
       <div className='flex items-center'>
       
         <Link href='/'>
