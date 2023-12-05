@@ -18,9 +18,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Uservalidation } from "@/lib/validations/user";
 import { ChangeEvent, useState } from "react";
-import { UserProfile } from "@clerk/nextjs"
 import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "@/lib/uploadthing";
+import { updateUser } from "@/lib/actions/user.actions";
 
 
 
@@ -35,14 +35,14 @@ interface Props {
     };
     btnTitle: string;
 }
-const AccountProfile = ({ user, btnTitle }:Props) => {
-  
-  const [files, setFiles] = useState<File[]>([]);
-  const { startUpload } = useUploadThing("media");
+const AccountProfile = ({ user, btnTitle }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
-  
-  const form = useForm({
+  const { startUpload } = useUploadThing("media");
+
+  const [files, setFiles] = useState<File[]>([]);
+
+  const form = useForm<z.infer<typeof Uservalidation>>({
     resolver: zodResolver(Uservalidation),
     defaultValues: {
       profile_photo: user?.image ? user.image : "",
@@ -50,42 +50,20 @@ const AccountProfile = ({ user, btnTitle }:Props) => {
       username: user?.username ? user.username : "",
       wallet: user?.wallet ? user.wallet : "",
     },
-  })
-
-  const handleImage = (e: ChangeEvent<HTMLInputElement>, feildChange: (valule: string) => void) => {
-    e.preventDefault();
-
-    const fileReader = new FileReader();
-
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-
-      setFiles(Array.from(e.target.files));
-      if (!file.type.includes("image")) return;
-
-      fileReader.onload = async (event) => {
-        const imageDataUrl = event.target?.result?.toString();
-        feildChange(imageDataUrl);
-      }
-
-      fileReader.readAsDataURL(file);
-      
-    }
-  }
+  });
 
   const onSubmit = async (values: z.infer<typeof Uservalidation>) => {
-    console.log(values)
     const blob = values.profile_photo;
 
     const hasImageChanged = isBase64Image(blob);
+    if (hasImageChanged) {
+      const imgRes = await startUpload(files);
 
-    if(hasImageChanged) {
-      const imgRes = await startUpload(files)
-
-      if(imgRes && imgRes[0].fileUrl) {
+      if (imgRes && imgRes[0].fileUrl) {
         values.profile_photo = imgRes[0].fileUrl;
       }
     }
+
     await updateUser({
       name: values.name,
       path: pathname,
@@ -95,7 +73,36 @@ const AccountProfile = ({ user, btnTitle }:Props) => {
       image: values.profile_photo,
     });
 
-  }
+    if (pathname === "/profile/edit") {
+      router.back();
+    } else {
+      router.push("/");
+    }
+  };
+
+  const handleImage = (
+    e: ChangeEvent<HTMLInputElement>,
+    fieldChange: (value: string) => void
+  ) => {
+    e.preventDefault();
+
+    const fileReader = new FileReader();
+
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      setFiles(Array.from(e.target.files));
+
+      if (!file.type.includes("image")) return;
+
+      fileReader.onload = async (event) => {
+        const imageDataUrl = event.target?.result?.toString() || "";
+        fieldChange(imageDataUrl);
+      };
+
+      fileReader.readAsDataURL(file);
+    }
+  };
+
   return (
     
     <Form {...form}>
@@ -108,14 +115,24 @@ const AccountProfile = ({ user, btnTitle }:Props) => {
           render={({ field }) => (
             <FormItem className="flex items-center gap-4">
               <FormLabel className=" flex h-24 w-24 items-center justify-center rounded-full bg-purple-700">
-                <Image
-                  
-                  src={field.value}
-                  alt="Profile photo"
-                  width={96}
-                  height={96}
-                  priority
-                  className="rounded-full object-contain" />
+              {field.value ? (
+                  <Image
+                    src={field.value}
+                    alt='profile_icon'
+                    width={96}
+                    height={96}
+                    priority
+                    className='rounded-full object-contain'
+                  />
+                ) : (
+                  <Image
+                    src='/assets/profile.svg'
+                    alt='profile_icon'
+                    width={24}
+                    height={24}
+                    className='object-contain'
+                  />
+                )}
 
               </FormLabel>
               <FormControl className="flex-1 text-base-semibold text-gray-200">
