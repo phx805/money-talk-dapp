@@ -29,7 +29,7 @@ interface Props {
         id: string;
         objectId: string;
         username: string;
-        name: String;
+        // name: String;
         wallet: string;
         image: string;
     };
@@ -46,7 +46,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     resolver: zodResolver(Uservalidation),
     defaultValues: {
       profile_photo: user?.image ? user.image : "",
-      name: user?.name ? user.name : "",
+      // name: user?.name ? user.name : "",
       username: user?.username ? user.username : "",
       wallet: user?.wallet ? user.wallet : "",
     },
@@ -147,7 +147,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           )}
         />
 
-<FormField
+{/* <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
@@ -162,7 +162,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
               </FormControl>
             </FormItem>
           )}
-        />
+        /> */}
 
 <FormField
           control={form.control}

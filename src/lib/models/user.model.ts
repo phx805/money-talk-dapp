@@ -10,28 +10,32 @@ const userSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-  name: {
+  // name: {
+  //   type: String,
+  //   required: true,
+  // },
+  wallet: {
     type: String,
     required: true,
   },
   image: String,
-  wallet: String,
+  
   threads: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Thread",
     },
   ],
-  onboarded: {
+  dashboard: {
     type: Boolean,
     default: false,
   },
-  communities: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Community",
-    },
-  ],
+  // communities: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "Community",
+  //   },
+  // ],
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
