@@ -1,5 +1,7 @@
-import { UserButton,auth} from "@clerk/nextjs"
+import { UserButton, auth} from "@clerk/nextjs"
 import Link from 'next/link';
+import { FaDollarSign } from "react-icons/fa6";
+
 
 
 function Header() {
@@ -11,9 +13,10 @@ function Header() {
       <div className='flex items-center'>
       
         <Link href='/'>
-          <div className='text-lg font-bold text-white uppercase'>
-            Money Talks
+          <div className='text-lg font-bold text-white uppercase flex items-center'>
+            Money Talk<FaDollarSign />
           </div>
+
         </Link>
         
       </div>
