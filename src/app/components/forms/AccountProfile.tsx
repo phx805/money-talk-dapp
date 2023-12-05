@@ -20,7 +20,7 @@ import { Uservalidation } from "@/lib/validations/user";
 import { ChangeEvent, useState } from "react";
 import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "@/lib/uploadthing";
-import { updateUser } from "@/lib/actions/user.actions";
+// import { updateUser } from "@/lib/actions/user.actions";
 
 
 
