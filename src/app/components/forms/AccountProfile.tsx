@@ -23,7 +23,6 @@ import { useUploadThing } from "@/lib/uploadthing";
 import { updateUser } from "@/lib/actions/user.actions";
 
 
-
 interface Props {
     user: {
         id: string;
@@ -62,9 +61,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     if (hasImageChanged) {
       const imgRes = await startUpload(files);
 
-      if (imgRes && imgRes[0].fileUrl) {
-        values.profile_photo = imgRes[0].fileUrl;
-      }
+     
     }
     
     await updateUser({
@@ -98,7 +95,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       if (!file.type.includes("image")) return;
 
       fileReader.onload = async (event) => {
-        const imageDataUrl = event.target?.result?.toString() || "";
+        const imageDataUrl = event.target?.result?.toString() || '';
         fieldChange(imageDataUrl);
       };
 
