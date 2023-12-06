@@ -16,11 +16,11 @@ import {
 import * as z from "zod"
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Uservalidation } from "@/lib/validations/user";
+import { UserValidation } from "@/lib/validations/user";
 import { ChangeEvent, useState } from "react";
 import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "@/lib/uploadthing";
-// import { updateUser } from "@/lib/actions/user.actions";
+import { updateUser } from "@/lib/actions/user.actions";
 
 
 
@@ -36,23 +36,26 @@ interface Props {
     btnTitle: string;
 }
 const AccountProfile = ({ user, btnTitle }: Props) => {
+
+  const [files, setFiles] = useState<File[]>([]);
   const router = useRouter();
   const pathname = usePathname();
   const { startUpload } = useUploadThing("media");
 
-  const [files, setFiles] = useState<File[]>([]);
+  
 
-  const form = useForm<z.infer<typeof Uservalidation>>({
-    resolver: zodResolver(Uservalidation),
+  const form = useForm<z.infer<typeof UserValidation>>({
+    resolver: zodResolver(UserValidation),
     defaultValues: {
-      profile_photo: user?.image ? user.image : "",
-      name: user?.name ? user.name : "",
-      username: user?.username ? user.username : "",
-      wallet: user?.wallet ? user.wallet : "",
+      profile_photo: '',
+      name: '',
+      username: '',
+      wallet: '',
+
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof Uservalidation>) => {
+  const onSubmit = async (values: z.infer<typeof UserValidation>) => {
     const blob = values.profile_photo;
 
     const hasImageChanged = isBase64Image(blob);
@@ -63,7 +66,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
         values.profile_photo = imgRes[0].fileUrl;
       }
     }
-
+    
     await updateUser({
       name: values.name,
       path: pathname,
@@ -157,7 +160,9 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
               </FormLabel>
               <FormControl className="flex-1 text-base-semibold text-gray-200">
                 <Input
+                  type="text"
                   className="border border-dark-4 bg-dark-3 text-light-1"
+                  {...field}
                />
               </FormControl>
             </FormItem>
@@ -174,7 +179,9 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
               </FormLabel>
               <FormControl className="flex-1 text-base-semibold text-gray-200">
                 <Input
+                  type="text"
                   className="border border-dark-4 bg-dark-3 text-light-1"
+                  {...field}
                />
               </FormControl>
             </FormItem>
@@ -191,7 +198,9 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
               </FormLabel>
               <FormControl className="flex-1 text-base-semibold text-gray-200">
                 <Input
+                  type="text"
                   className="border border-dark-4 bg-dark-3 text-light-1"
+                  {...field}
                />
               </FormControl>
             </FormItem>
