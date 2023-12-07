@@ -17,10 +17,10 @@ const userSchema = new mongoose.Schema({
   image: String,
   wallet: String,
   
-  threads: [
+  posts: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Thread",
+      ref: "Post",
     },
   ],
   dashboard: {
