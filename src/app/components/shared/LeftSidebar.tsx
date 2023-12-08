@@ -36,7 +36,9 @@ function LeftSidebar() {
         </Link>
         ))
       }
-      <button className="rounded-full max-w-xs m-2 bg-violet-700 p-4 text-2xl text-center hover:bg-opacity-70 transition duration-200">Speak</button>
+      <Link href="/speak" 
+            className="rounded-full max-w-xs m-2 bg-violet-700 p-4 text-2xl text-center hover:bg-opacity-70 transition duration-200">Speak
+      </Link>
       </div>
     </section>
   )

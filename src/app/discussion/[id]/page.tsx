@@ -5,37 +5,45 @@ import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
+export const revalidate = 0;
+
 async function page({ params }: { params: { id: string } }) {
     if (!params.id) return null;
+
 
     const user = await currentUser();
   if (!user) return null;
 
   const userInfo = await fetchUser(user.id);
-  if (!userInfo?.onboarded) redirect("/dashboard");
+  
 
-  const speak = await fetchPostById(params.id);
+  const speak = await fetchPostById(params.id)
 
   return (
 
-    <section className='relative'>
+    <section className="relitive rounded-2xl bg-neutral-900 text-white">
       <div>
-        <PostCard
-          id={speak._id}
-          currentUserId={user.id}
-          parentId={speak.parentId}
-          content={speak.text}
-          author={speak.author}
-          createdAt={speak.createdAt}
-          comments={speak.children}
+      <PostCard
+                key={speak._id}
+                id={speak._id}
+                currentUserId={user.id}
+                parentId={speak.parentId}
+                content={speak.text}
+                author={speak.author}
+                createdAt={speak.createdAt}
+                comments={speak.children}
+              />
+      </div>
+
+      <div>
+      <Comment
+          postId={params.id}
+          currentUserImg={user.imageUrl}
+          currentUserId={JSON.stringify(userInfo._id)}
         />
       </div>
 
-      <div>
-        <Comment />
-      </div>
-
-      {/* <div className='mt-10'>
+      <div className='mt-10'>
         {speak.children.map((childItem: any) => (
           <PostCard
             key={childItem._id}
@@ -49,7 +57,7 @@ async function page({ params }: { params: { id: string } }) {
             isComment
           />
         ))}
-      </div> */}
+      </div>
     </section>
   );
 }

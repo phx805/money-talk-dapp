@@ -34,7 +34,11 @@ interface Props {
     isComment,
   }: Props) => {
     return (
-        <article className="rounded-2xl bg-neutral-900 mt-4 flex w-full flex-col p-7">
+      <article
+      className={`flex w-full flex-col rounded-xl ${
+        isComment ? "px-0 xs:px-7" : "bg-black p-7"
+      }`}
+    >
     
           <div className="flex flex-row items-start gap-4 justify-center ">
       
@@ -60,7 +64,9 @@ interface Props {
       <div className="flex items-center justify-start space-x-24 mt-4 w-full">
                     
       <div className="rounded-full hover:bg-violet-500/50 transtion duration-200 p-3 cursor-pointer">
+                    <Link href={`/discussion/${id}`}>
                       <BsChat/>
+                    </Link>
                     </div>
                     <div className="rounded-full hover:bg-violet-500/50 transtion duration-200 p-3 cursor-pointer">
                       <Link href="/">
@@ -76,7 +82,7 @@ interface Props {
                     </div>
                     
                     {isComment && comments.length > 0 && (
-                <Link href={`/thread/${id}`}>
+                <Link href={`/discussion/${id}`}>
                   <p className='mt-1 text-subtle-medium text-gray-1'>
                     {comments.length} repl{comments.length > 1 ? "ies" : "y"}
                   </p>
