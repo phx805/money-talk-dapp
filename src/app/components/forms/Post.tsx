@@ -22,15 +22,7 @@ import { createPost } from "@/lib/actions/post.actions";
 
 
 interface Props {
-    user: {
-        id: string;
-        objectId: string;
-        username: string;
-        name: String;
-        wallet: string;
-        image: string;
-    };
-    btnTitle: string;
+  userId: string;
 }
 
 
