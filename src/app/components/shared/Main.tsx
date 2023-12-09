@@ -10,11 +10,11 @@ async function Main() {
   const user = currentUser();
   if (!user) return null;
 
-  console.log(result);
+
   
   return (
      <div className="col-span-6">
-         <main className="p-2 flex w-full max-w-2xl h-full min-h-screen flex-col border-l-[0.5px] border-r-[0.5px] border-lime-100">
+         <section className="p-2 flex w-full max-w-2xl h-full min-h-screen flex-col border-l-[0.5px] border-r-[0.5px] border-lime-100">
       <h1 className="text-2xl font-bold p-6 backdrop-blur bg-black/10 sticky top-0">Home</h1>
       <div className="border-t-[0.5px] px-4 flex items-stretch space-x-2 border-lime-100 relative">
         {/* <div className="w-11 h-11 bg-slate-400 rounded-full flex-none"></div> */}
@@ -47,7 +47,7 @@ async function Main() {
           </>
         )}
         
-    </main>
+    </section>
       
     </div>
   )

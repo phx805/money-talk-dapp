@@ -14,8 +14,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  wallet: {
+    type: String,
+    required: true,
+  },
   image: String,
-  wallet: String,
   
   posts: [
     {

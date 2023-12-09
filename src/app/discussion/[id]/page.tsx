@@ -17,6 +17,7 @@ async function page({ params }: { params: { id: string } }) {
 
   const userInfo = await fetchUser(user.id);
   
+  
 
   const speak = await fetchPostById(params.id)
 

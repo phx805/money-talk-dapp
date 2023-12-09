@@ -7,7 +7,7 @@ import { IoShareOutline } from "react-icons/io5";
 interface Props {
     id: string;
     currentUserId: string;
-    parentId: string;
+    parentId: string | null;
     content: string;
     author: {
       name: string;
