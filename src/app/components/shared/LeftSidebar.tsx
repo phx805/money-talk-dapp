@@ -19,7 +19,7 @@ const NAVIGATOIN_ITEMS = [
 
 function LeftSidebar() {
   return (
-    <section className="w-[20%] sticky top-0 xl:flex flex-col items-stretch h-screen hidden">
+    <section className="col-span-2 flex flex-col">
       <div className="flex flex-col items-stretch h-full space-y-4 mt-4">
       {
         NAVIGATOIN_ITEMS.map((item)=>(

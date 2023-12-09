@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 
 import { fetchUser } from "@/lib/actions/user.actions";
 import Post from "@/app/components/forms/Post";
+import SpeakHeader from "../components/shared/SpeakHearer";
 
 async function Page() {
   const user = await currentUser();
@@ -14,8 +15,10 @@ async function Page() {
 //   if (!userInfo?.onboarded) redirect("/dashboard");
 
   return (
+    
     <>
-      <h1 className='head-text'>Create Thread</h1>
+    <SpeakHeader />
+      <h1 className='head-text'>Thoughts of the Day...</h1>
 
       <Post userId={userInfo._id} />
     </>

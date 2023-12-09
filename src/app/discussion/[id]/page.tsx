@@ -1,5 +1,6 @@
 import Comment from "@/app/components/forms/Comment";
 import PostCard from "@/app/components/post/PostCard";
+import SpeakHeader from "@/app/components/shared/SpeakHearer";
 import { fetchPostById } from "@/lib/actions/post.actions";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
@@ -21,8 +22,11 @@ async function page({ params }: { params: { id: string } }) {
 
   return (
 
-    <section className="relitive rounded-2xl bg-neutral-900 text-white">
-      <div>
+    
+
+    <section className="relitive rounded-2xl bg-black text-white">
+      <SpeakHeader/>
+      <div className="bg-neutral-800 rounded-2xl">
       <PostCard
                 key={speak._id}
                 id={speak._id}
@@ -35,7 +39,7 @@ async function page({ params }: { params: { id: string } }) {
               />
       </div>
 
-      <div>
+      <div className="bg-black">
       <Comment
           postId={params.id}
           currentUserImg={user.imageUrl}
@@ -43,7 +47,7 @@ async function page({ params }: { params: { id: string } }) {
         />
       </div>
 
-      <div className='mt-10'>
+      <div className='mt-10 bg-black'>
         {speak.children.map((childItem: any) => (
           <PostCard
             key={childItem._id}

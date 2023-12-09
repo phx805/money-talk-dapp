@@ -11,10 +11,13 @@
   "dependencies": {
     "@clerk/clerk-js": "^4.65.1",
     "@clerk/nextjs": "^4.27.1",
+    "@clerk/themes": "^1.7.9",
     "@hookform/resolvers": "^3.3.2",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@uploadthing/react": "^6.0.2",
+    "@web3-onboard/injected-wallets": "^2.10.10",
+    "@web3-onboard/react": "^2.8.13",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "lucide-react": "^0.294.0",

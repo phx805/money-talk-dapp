@@ -75,7 +75,7 @@ const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
             <Input
                   type='text'
                   {...field}
-                  placeholder='Comment...'
+                  placeholder='Remark...'
                   className='no-focus text-light-1 outline-none'
                 />
             </FormControl>
@@ -84,8 +84,8 @@ const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
         )}
       />
 
-      <Button type='submit' className='bg-black'>
-        Post Thread
+      <Button type='submit' className='hover:bg-violet-500/50 bg-violet-700'>
+        speak
       </Button>
     </form>
   </Form>

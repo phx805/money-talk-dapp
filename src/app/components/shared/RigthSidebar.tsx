@@ -2,7 +2,7 @@ import { BsSearch } from 'react-icons/bs';
 
 function RigthSidebar() {
   return (
-    <section className="max-w-2xl sticky hidden top-2 overflow-y-auto mt-2 xl:flex flex-col items-stretch h-[90vh] overflow-x-hidden px-6">
+    <section className="col-span-2 max-w-2xl sticky hidden top-2 overflow-y-auto mt-2 xl:flex flex-col items-stretch h-[90vh] overflow-x-hidden px-6">
     <div>
       <div className="relative w-full h-full group">
         <input

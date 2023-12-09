@@ -35,12 +35,12 @@ interface Props {
   }: Props) => {
     return (
       <article
-      className={`flex w-full flex-col rounded-xl ${
-        isComment ? "px-0 xs:px-7" : "bg-black p-7"
+      className={`flex w-full flex-col border-b-[0.5px] rounded-xl ${
+        isComment ? "px-0 xs:px-7" : "bg-dark-2 p-7"
       }`}
     >
     
-          <div className="flex flex-row items-start gap-4 justify-center ">
+          <div className="flex flex-row items-start py-4 gap-4 justify-center ">
       
       <Link href={`/profile/${author.id}`} className='relative h-[50px] w-[50px]'>
         <Image
@@ -87,6 +87,7 @@ interface Props {
                     {comments.length} repl{comments.length > 1 ? "ies" : "y"}
                   </p>
                 </Link>
+                
               )}
 
    
