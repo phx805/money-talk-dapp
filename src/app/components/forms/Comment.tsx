@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { usePathname, useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+
 import {
   Form,
   FormControl,
@@ -18,7 +19,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { CommentValidation } from "@/lib/validations/post";
-import { addCommentToPost } from "@/lib/actions/post.actions";
+import { addCommentToPost, fetchPostById } from "@/lib/actions/post.actions";
 
 // import { CommentValidation } from "@/lib/validations/thread";
 // import { addCommentToThread } from "@/lib/actions/thread.actions";
@@ -40,6 +41,9 @@ const form = useForm({
   },
 })
 const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
+  const speakPost = await fetchPostById(postId);
+  console.log(speakPost.author.wallet);
+
   await addCommentToPost(
     postId,
     values.post,

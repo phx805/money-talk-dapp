@@ -78,7 +78,7 @@ interface Params {
         .populate({
           path: "author",
           model: User,
-          select: "_id id name image",
+          select: "_id id name image wallet",
         }) // Populate the author field with _id and username
         .populate({
           path: "children", // Populate the children field

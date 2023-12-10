@@ -13,6 +13,7 @@ interface Props {
       name: string;
       image: string;
       id: string;
+      wallet: string;
     };
     createdAt: string;
     comments: {
@@ -53,9 +54,10 @@ interface Props {
       <div className="flex w-full flex-row">
         <Link href={`/profile/${author.id}`} className='w-fit'>
               <h4 className="mt-2 cursor-pointer text-base-semibold text-white">
-                {author.name}
-              </h4>
+                {author.name} {author.wallet}
+              </h4> 
             </Link>
+           
         </div>
       </div>
 

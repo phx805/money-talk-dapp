@@ -20,7 +20,9 @@ async function page({ params }: { params: { id: string } }) {
   
 
   const speak = await fetchPostById(params.id)
-
+  console.log(speak);
+  console.log(speak.author);
+  
   return (
 
     

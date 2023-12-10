@@ -13,7 +13,7 @@ contract CommentDonation {
         _;
     }
 
-    function sendPayment(address payable recipient) external onlyOwner payable {
+    function sendPayment(address payable recipient) external payable {
         require(recipient != address(0xA7EaA380968CC93C42C510F8424d163a0E76256D), "Invalid recipient address");
         require(msg.value > 0, "Invalid payment amount");
 
