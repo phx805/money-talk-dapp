@@ -20,7 +20,7 @@ contract PostFund {
         i_owner = msg.sender;
     }
 
-    function fund() public payable {
+    function createPost() public payable {
         require(msg.value.getConversionRate() >= MINIMUM_USD, "You need to spend more ETH!");
         // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
         addressToAmountFunded[msg.sender] += msg.value;
@@ -44,44 +44,23 @@ contract PostFund {
             addressToAmountFunded[funder] = 0;
         }
         funders = new address[](0);
-        // // transfer
-        // payable(msg.sender).transfer(address(this).balance);
-        
-        // // send
-        // bool sendSuccess = payable(msg.sender).send(address(this).balance);
-        // require(sendSuccess, "Send failed");
-
-        // call
         (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call failed");
     }
-    // Explainer from: https://solidity-by-example.org/fallback/
-    // Ether is sent to contract
-    //      is msg.data empty?
-    //          /   \ 
-    //         yes  no
-    //         /     \
-    //    receive()?  fallback() 
-    //     /   \ 
-    //   yes   no
-    //  /        \
-    //receive()  fallback()
+
+    function makeComment(address payable recipient) external payable {
+        require(recipient != address(0xA7EaA380968CC93C42C510F8424d163a0E76256D), "Invalid recipient address");
+        require(msg.value > 0, "Invalid payment amount");
+
+        recipient.transfer(msg.value);
+    }
 
     fallback() external payable {
-        fund();
+        createPost();();
     }
 
     receive() external payable {
-        fund();
+        createPost();
     }
 
 }
-
-// Concepts we didn't cover yet (will cover in later sections)
-// 1. Enum
-// 2. Events
-// 3. Try / Catch
-// 4. Function Selector
-// 5. abi.encode / decode
-// 6. Hash with keccak256
-// 7. Yul / Assembly
