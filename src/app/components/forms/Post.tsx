@@ -63,11 +63,11 @@ function Post({ userId }: { userId: string }) {
         name='post'
         render={({ field }) => (
           <FormItem className='flex w-full flex-col gap-3'>
-            <FormLabel className='text-xl text-base-semibold text-sizetext-light-2'>
+            <FormLabel className='text-xl text-base-semibold text-white'>
               Lets talk about it...
             </FormLabel>
-            <FormControl className='no-focus border border-dark-4 bg-black/50 text-light-1'>
-              <Textarea placeholder="Discussion"
+            <FormControl className='no-focus border border-dark-4 text-light-1'>
+              <Textarea className="bg-dark-4" placeholder="Discussion..."
               rows={15} {...field} />
             </FormControl>
             <FormMessage />
@@ -75,7 +75,7 @@ function Post({ userId }: { userId: string }) {
         )}
       />
 
-      <Button type='submit' className='bg-black'>
+      <Button type='submit' className='hover:bg-violet-500/50 bg-violet-700'>
         Speak
       </Button>
     </form>

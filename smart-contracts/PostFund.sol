@@ -56,7 +56,7 @@ contract PostFund {
     }
 
     fallback() external payable {
-        createPost();();
+        createPost();
     }
 
     receive() external payable {

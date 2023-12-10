@@ -41,8 +41,8 @@ const form = useForm({
   },
 })
 const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
-  const speakPost = await fetchPostById(postId);
-  console.log(speakPost.author.wallet);
+  // const speakPost = await fetchPostById(postId);
+  // console.log(speakPost.author.wallet);
 
   await addCommentToPost(
     postId,
@@ -58,7 +58,7 @@ const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
   return (
     <Form {...form}>
     <form
-      className='mt-10 flex flex-col justify-start gap-10'
+      className='comment-form'
       onSubmit={form.handleSubmit(onSubmit)}
     >
       <FormField

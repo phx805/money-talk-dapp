@@ -18,7 +18,7 @@ async function Page() {
     
     <>
     <SpeakHeader />
-      <h1 className='head-text'>Thoughts of the Day...</h1>
+      <h1 className='text-white text-heading2-bold'>Thoughts of the Day...</h1>
 
       <Post userId={userInfo._id} />
     </>
