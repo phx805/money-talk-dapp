@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
-//0xce540d63311bf1a3cF0A055d01320A6545120b62
+//0xc51C9042b387cdf113327A5Ea7FAbe6DB2D5622f polygon mumbai
+//0x6dea5D5535328B924018B8621BD5792F7bE1dE37 sepolia
+//0x88bC36b65E14Ded22299886005880f023aa87eAC avalanche testnet
 
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
