@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { usePathname, useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ethers } from "ethers";
+import mAbi from "../../../lib/money.json"
 
 
 import {
@@ -28,10 +30,22 @@ interface Props {
   postId: string;
   currentUserImg: string;
   currentUserId: string;
+  wallet: string;
 }
 
-const Comment = ({ postId, currentUserImg, currentUserId }: Props) => {
+const Comment = ({ postId, currentUserImg, currentUserId, wallet }: Props) => {
 const pathname = usePathname();
+const CA = '0x6c0375B388d9EeAF2e43a28411342969B28f23Ee'
+const getContract = async () => {
+    if (window.ethereum) {
+      const provider = new ethers.BrowserProvider(window.ethereum); // A connection to the Ethereum network
+      var signer = await provider.getSigner(); // Holds your private key and can sign things
+      const Contract = new ethers.Contract(CA, mAbi, signer);
+      return Contract;
+    } else {
+      alert("No wallet detected");
+    }
+  };
 
 const form = useForm({
   resolver: zodResolver(CommentValidation),
@@ -40,19 +54,28 @@ const form = useForm({
 
   },
 })
-const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
-  // const speakPost = await fetchPostById(postId);
-  // console.log(speakPost.author.wallet);
+  const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
+    try {
+      const mCt = await getContract();
+      console.log(mCt);
+      console.log(wallet)
+      var tx = await mCt.makeComment(wallet, {
+        value: 7500000000000000n
+      });
+      await tx.wait();
+      await addCommentToPost(
+        postId,
+        values.post,
+        JSON.parse(currentUserId),
+        pathname
+      );
 
-  await addCommentToPost(
-    postId,
-    values.post,
-    JSON.parse(currentUserId),
-    pathname
-  );
+      form.reset();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  form.reset();
-};
 
 
   return (
