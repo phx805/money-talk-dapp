@@ -23,7 +23,13 @@ function LeftSidebar() {
       <div className="flex flex-col items-stretch h-full space-y-4 mt-4">
       {
         NAVIGATOIN_ITEMS.map((item)=>(
-        <Link className=" hover:bg-violet-500/50 text-2xl transition-200 flex items-center justify-start w-fit space-x-4 rounded-3xl py-2 px-6" href={`/${item.title.toLowerCase()}`} key={item.title}>
+        <Link className=" hover:bg-violet-500/50 text-2xl transition-200 flex items-center justify-start w-fit space-x-4 rounded-3xl py-2 px-6" href={
+          item.title.toLocaleLowerCase() === "home"
+            ? "/"
+            : item.title.toLocaleLowerCase() === "profile"
+            ? "/profile"
+            : `/${item.title.toLowerCase()}`
+        }>
           <div>
             <item.icon/>
           </div>
