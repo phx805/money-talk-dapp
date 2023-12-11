@@ -42,6 +42,12 @@ init({
       token: 'ETH',
       label: 'Base',
       rpcUrl: 'https://mainnet.base.org'
+    },
+    {
+      id: '0x13881',
+      token: 'MATIC',
+      label: 'Mumbai',
+      rpcUrl: 'https://polygon-mumbai-pokt.nodies.app'
     }
   ]
 })
@@ -54,8 +60,8 @@ function SpeakHeader() {
 
   if (wallet) {
     // if using ethers v6 this is:
-    // ethersProvider = new ethers.BrowserProvider(wallet.provider, 'any')
-    ethersProvider = new ethers.providers.Web3Provider(wallet.provider, 'any')
+     ethersProvider = new ethers.BrowserProvider(wallet.provider, 'any')
+    //ethersProvider = new ethers.providers.Web3Provider(wallet.provider, 'any')
   }
 
   return (
