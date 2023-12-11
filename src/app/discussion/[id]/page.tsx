@@ -20,7 +20,6 @@ async function page({ params }: { params: { id: string } }) {
   
 
   const speak = await fetchPostById(params.id)
-  console.log(speak);
   console.log(speak.author);
   
   return (
@@ -47,6 +46,7 @@ async function page({ params }: { params: { id: string } }) {
           postId={params.id}
           currentUserImg={user.imageUrl}
           currentUserId={JSON.stringify(userInfo._id)}
+          wallet= {speak.author.wallet}
         />
       </div>
 
