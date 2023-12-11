@@ -60,7 +60,7 @@ function SpeakHeader() {
 
   return (
     <div>
-      <button disabled={connecting} onClick={() => (wallet ? disconnect(wallet) : connect())}>
+      <button className="text-white p-4 m-4 bg-dark-4 rounded-xl"disabled={connecting} onClick={() => (wallet ? disconnect(wallet) : connect())}>
         {connecting ? 'connecting' : wallet ? 'disconnect' : 'connect'}
       </button>
     </div>
