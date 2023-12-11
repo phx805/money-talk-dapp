@@ -1,9 +1,12 @@
-Money Talks dApp
+##Money Talks dApp
+
 This is SocialFi dApp that empowers users with the ability to create economic prosperity with the exchange of words. Paid speech is one way to describe it by putting your money were your mouth is!
 
 
-What it does
-Deployed on Polygon, Sepolia, and Avalanche
+##What it does
+
+**Deployed on Polygon, Sepolia, and Avalanche**
+
 Create a Post: Every post is treated as a signed transaction with your wallet, incurring a cost of 0.75 cents to the platform. To facilitate this process, a dedicated smart contract will be implemented. This contract will handle both the payment transaction and the storage of the post in the Database/UI.
 
 Remarks/Comments: Each remark or comment on a post functions as a signed transaction with your wallet, incurring a cost of 0.25 cents. Similar to the post creation process, a smart contract will be essential for managing this transaction. The contract will not only process the payment for the comment but will also send the Payment/Donation to the wallet address of the user who created the original post.
