@@ -35,7 +35,7 @@ function Post({ userId }: { userId: string }) {
   const CA = '0x6c0375B388d9EeAF2e43a28411342969B28f23Ee'
   const getContract = async () => {
     if (window.ethereum) {
-      const provider = new ethers.BrowserProvider(window.ethereum); // A connection to the Ethereum network
+      const provider = new ethers.providers.Web3Provider(window.ethereum); // A connection to the Ethereum network
       var signer = await provider.getSigner(); // Holds your private key and can sign things
       const Contract = new ethers.Contract(CA, mAbi, signer);
       return Contract;

@@ -11,7 +11,7 @@ const apiKey = '1730eff0-9d50-4382-a3fe-89f0d34a2070'
 
 const injected = injectedModule()
 
-const infuraKey = '<INFURA_KEY>'
+const infuraKey = 'b9e225b08f4e418b8c6c3dbf03b1b7a2'
 const rpcUrl = `https://mainnet.infura.io/v3/${infuraKey}`
 
 // initialize Onboard
@@ -26,10 +26,10 @@ init({
       rpcUrl
     },
     {
-      id: 42161,
-      token: 'ARB-ETH',
-      label: 'Arbitrum One',
-      rpcUrl: 'https://rpc.ankr.com/arbitrum'
+      id: 80001,
+      token: 'MATIC',
+      label: 'Polygon Mumbai',
+      rpcUrl: 'https://polygon-mumbai.infura.io/v3/b9e225b08f4e418b8c6c3dbf03b1b7a2'
     },
     {
       id: '0xa4ba',
@@ -42,12 +42,6 @@ init({
       token: 'ETH',
       label: 'Base',
       rpcUrl: 'https://mainnet.base.org'
-    },
-    {
-      id: '0x13881',
-      token: 'MATIC',
-      label: 'Mumbai',
-      rpcUrl: 'https://polygon-mumbai-pokt.nodies.app'
     }
   ]
 })
@@ -60,13 +54,13 @@ function SpeakHeader() {
 
   if (wallet) {
     // if using ethers v6 this is:
-     ethersProvider = new ethers.BrowserProvider(wallet.provider, 'any')
-    //ethersProvider = new ethers.providers.Web3Provider(wallet.provider, 'any')
+    // ethersProvider = new ethers.BrowserProvider(wallet.provider, 'any')
+    ethersProvider = new ethers.providers.Web3Provider(wallet.provider, 'any')
   }
 
   return (
     <div>
-      <button className="bg-neutral-900 text-white p-4 m-4 rounded-2xl border-blue-50" disabled={connecting} onClick={() => (wallet ? disconnect(wallet) : connect())}>
+      <button disabled={connecting} onClick={() => (wallet ? disconnect(wallet) : connect())}>
         {connecting ? 'connecting' : wallet ? 'disconnect' : 'connect'}
       </button>
     </div>
