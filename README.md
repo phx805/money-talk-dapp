@@ -1,9 +1,9 @@
-##Money Talks dApp
+## Money Talks dApp
 
 This is SocialFi dApp that empowers users with the ability to create economic prosperity with the exchange of words. Paid speech is one way to describe it by putting your money were your mouth is!
 
 
-##What it does
+## What it does
 
 **Deployed on Polygon, Sepolia, and Avalanche**
 
